@@ -19,11 +19,11 @@
     "mongodb": "^4.7.0",
     "mongoose": "^6.4.2"
   },
-  "bugs": {
-    "url": "https://github.com/Apna-Tutor/ApnaTutor-Server/issues"
-  },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "bugs": {
+    "url": "https://github.com/Apna-Tutor/ApnaTutor-Server/issues"
   },
   "homepage": "https://github.com/Apna-Tutor/ApnaTutor-Server#readme"
 }
