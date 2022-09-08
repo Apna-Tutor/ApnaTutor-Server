@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
             else throw new Error("Incorrect password!");
         } else throw new Error("No user found!");
     }).catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     });
 });
 
