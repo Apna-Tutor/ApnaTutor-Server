@@ -4,12 +4,8 @@
   "description": "Server for Apna Tutor",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Apna-Tutor/ApnaTutor-Server.git"
+      "test": "nodemon index.js",
+      "start": "node index.js"
   },
   "author": "Prasun Sarkar",
   "license": "ISC",
@@ -24,9 +20,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  },
-  "bugs": {
-    "url": "https://github.com/Apna-Tutor/ApnaTutor-Server/issues"
-  },
-  "homepage": "https://github.com/Apna-Tutor/ApnaTutor-Server#readme"
+  }
 }
