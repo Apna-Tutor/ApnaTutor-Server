@@ -4,7 +4,7 @@ const Quiz = require('./quiz');
 
 module.exports = require('mongoose').Schema({
     title: {type: String, required: true},
-    description: {type: String, required: true},
+    description: {type: String, required: false},
     thumbnail: {type: String, required: true},
     videoUrl: {type: String, required: true},
     date: {type: Number, required: true},

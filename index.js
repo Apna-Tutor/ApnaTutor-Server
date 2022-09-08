@@ -16,11 +16,9 @@ app.use(cors());
 app.use(express.json({limit: 104857600}));
 app.use(express.urlencoded({ extended: true }));
 
-// app.use('/admin', require('./Routers/adminRoutes'));
-// app.use('/user', require('./Routers/userRoutes'));
-// app.use('/students', require('./Routers/studentsRouter'));
-// app.use('/exams', require('./Routers/examRoutes'));
-// app.use('/degrees', require('./Routers/degreeRoutes'));
+app.use('/users', require('./Routes/users'));
+app.use('/courses', require('./Routes/courses'));
+app.use('/upload', require('./Routes/uploader'));
 
 app.listen(process.env.PORT, () => {
     console.log('Server running on port ' + process.env.PORT)
