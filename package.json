@@ -4,6 +4,7 @@
   "description": "Server for Apna Tutor",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "nodemon index.js"
   },
   "repository": {
