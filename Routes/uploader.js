@@ -1,4 +1,4 @@
-const Cloudinary = require('Cloudinary').v2;
+const Cloudinary = require('cloudinary').v2;
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
