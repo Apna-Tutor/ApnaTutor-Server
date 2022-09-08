@@ -6,7 +6,7 @@ router.get('/', (req, res)=> {
     User.findById(req.query.user, {password: 0}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     });
 });
 
@@ -14,7 +14,7 @@ router.get('/in', (req, res)=> {
     User.find({_id: {$in: req.body.users}}, {password: 0}).then((value) => {
         res.status(200).json(value.sort((a,b)=> a.name.localeCompare(b.name)));
     }).catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     });
 });
 
@@ -24,10 +24,10 @@ router.post('/signup', (req, res) => {
         else new User(req.body).save().then((value) => {
             res.status(200).json(value);
         }).catch((error) => {
-            res.status(400).send(error);
+            res.status(400).send(error.message);
         });
     }).catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     });
 });
 
@@ -46,7 +46,7 @@ router.patch('/update', (req, res)=> {
     User.findByIdAndUpdate(req.query.user, req.body, {new: true}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     });
 });
 
@@ -54,7 +54,7 @@ router.delete('/delete', (req, res)=> {
     User.findByIdAndDelete(req.query.user).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     });
 });
 

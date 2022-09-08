@@ -15,7 +15,7 @@ router.put('/avatar', multer({storage: multer.memoryStorage()}).single('avatar')
         folder: "ApnaTutor/avatars/",
         public_id: Date.now().toString()
     },(error, result) => {
-        if (error) res.status(400).send(error);
+        if (error) res.status(400).send(error.message);
         else res.status(200).json({url: result.secure_url});
     }).end(req.file.buffer);
 });
@@ -26,7 +26,7 @@ router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumb
         folder: "ApnaTutor/thumbnails/",
         public_id: Date.now().toString()
     },(error, result) => {
-        if (error) res.status(400).send(error);
+        if (error) res.status(400).send(error.message);
         else res.status(200).json({url: result.secure_url});
     }).end(req.file.buffer);
 });
@@ -37,7 +37,7 @@ router.put('/video', multer({storage: multer.memoryStorage()}).single('video'), 
         folder: "ApnaTutor/videos/",
         public_id: Date.now().toString()
     },(error, result) => {
-        if (error) res.status(400).send(error);
+        if (error) res.status(400).send(error.message);
         else res.status(200).json({url: result.secure_url});
     }).end(req.file.buffer);
 });
