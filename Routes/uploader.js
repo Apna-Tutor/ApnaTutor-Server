@@ -17,7 +17,7 @@ router.put('/avatar', multer({storage: multer.memoryStorage()}).single('avatar')
         public_id: Date.now().toString()
     },(error, result) => {
         if (error) res.status(400).send(error.message);
-        else res.status(200).json({url: result.secure_url});
+        else res.status(200).send(result.secure_url);
     }).end(req.file.buffer);
 });
 
@@ -31,7 +31,7 @@ router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumb
         public_id: Date.now().toString()
     },(error, result) => {
         if (error) res.status(400).send(error.message);
-        else res.status(200).json({url: result.secure_url});
+        else res.status(200).send(result.secure_url);
     }).end(req.file.buffer);
 });
 
@@ -42,7 +42,7 @@ router.put('/video', multer({storage: multer.memoryStorage()}).single('video'), 
         public_id: Date.now().toString()
     },(error, result) => {
         if (error) res.status(400).send(error.message);
-        else res.status(200).json({url: result.secure_url});
+        else res.status(200).send(result.secure_url);
     }).end(req.file.buffer);
 });
 
