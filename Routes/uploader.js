@@ -6,13 +6,14 @@ const multer = require('multer');
 Cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
+    api_secret: process.env.API_SECRET,
+    secure: true
 });
 
 router.put('/avatar', multer({storage: multer.memoryStorage()}).single('avatar'), (req, res)=> {
-    Cloudinary.uploader.upload({
+    Cloudinary.uploader.upload_stream({
         resource_type: "auto",
-        folder: "ApnaTutor/avatars/",
+        folder: "ApnaTutor/avatars",
         public_id: Date.now().toString()
     },(error, result) => {
         if (error) res.status(400).send(error.message);
@@ -24,9 +25,9 @@ router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumb
     console.log(req.file);
     console.log(req.file.buffer);
 
-    Cloudinary.uploader.upload({
+    Cloudinary.uploader.upload_stream({
         resource_type: "auto",
-        folder: "ApnaTutor/thumbnails/",
+        folder: "ApnaTutor/thumbnails",
         public_id: Date.now().toString()
     },(error, result) => {
         if (error) res.status(400).send(error.message);
@@ -35,9 +36,9 @@ router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumb
 });
 
 router.put('/video', multer({storage: multer.memoryStorage()}).single('video'), (req, res)=> {
-    Cloudinary.uploader.upload({
+    Cloudinary.uploader.upload_stream({
         resource_type: "auto",
-        folder: "ApnaTutor/videos/",
+        folder: "ApnaTutor/videos",
         public_id: Date.now().toString()
     },(error, result) => {
         if (error) res.status(400).send(error.message);
