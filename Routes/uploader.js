@@ -21,11 +21,9 @@ router.put('/avatar', multer({storage: multer.memoryStorage()}).single('avatar')
 });
 
 router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumbnail'), (req, res)=> {
-    console.log(req.body);
     console.log(req.file);
     console.log(req.file.buffer);
-    console.log(req);
-    
+
     Cloudinary.uploader.upload({
         resource_type: "auto",
         folder: "ApnaTutor/thumbnails/",
