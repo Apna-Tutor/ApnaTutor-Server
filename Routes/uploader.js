@@ -10,7 +10,7 @@ Cloudinary.config({
     secure: true
 });
 
-router.put('/avatar', multer({storage: multer.memoryStorage()}).single('avatar'), (req, res)=> {
+router.put('/avatar', multer({storage: multer.memoryStorage(), limits: {fileSize: 104857600}}).single('avatar'), (req, res)=> {
     Cloudinary.uploader.upload_stream({
         resource_type: "auto",
         folder: "ApnaTutor/avatars",
@@ -21,7 +21,7 @@ router.put('/avatar', multer({storage: multer.memoryStorage()}).single('avatar')
     }).end(req.file.buffer);
 });
 
-router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumbnail'), (req, res)=> {
+router.put('/thumbnail', multer({storage: multer.memoryStorage(), limits: {fileSize: 104857600}}).single('thumbnail'), (req, res)=> {
     Cloudinary.uploader.upload_stream({
         resource_type: "auto",
         folder: "ApnaTutor/thumbnails",
@@ -32,7 +32,7 @@ router.put('/thumbnail', multer({storage: multer.memoryStorage()}).single('thumb
     }).end(req.file.buffer);
 });
 
-router.put('/video', multer({storage: multer.memoryStorage()}).single('video'), (req, res)=> {
+router.put('/video', multer({storage: multer.memoryStorage(), limits: {fileSize: 10737418240}}).single('video'), (req, res)=> {
     Cloudinary.uploader.upload_stream({
         resource_type: "auto",
         folder: "ApnaTutor/videos",
