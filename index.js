@@ -13,7 +13,7 @@ mongoose.connect(process.env.DB_URL, {useNewUrlParser:true, useUnifiedTopology: 
 })
 
 app.use(cors());
-app.use(express.json({limit: 104857600}));
+app.use(express.json({limit: 1073741824})); // 1GB 
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/users', require('./Routes/users'));
