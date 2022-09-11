@@ -109,6 +109,22 @@ router.post('/add/comment', (req, res)=> {
     });
 });
 
+router.post('/comment/add-like', (req, res)=> {
+    Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].comments.$[c].likedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video, "c._id": req.query.comment}], new: true}).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
+router.post('/comment/remove-like', (req, res)=> {
+    Course.findByIdAndUpdate(req.query.course, {$pull: {"videos.$[v].comments.$[c].likedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video, "c._id": req.query.comment}], new: true}).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
 // Quiz routes
 router.post('/add/quiz', (req, res)=> {
     Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].quiz": {$each: [req.body]}}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
