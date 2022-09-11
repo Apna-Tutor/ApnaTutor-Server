@@ -76,6 +76,30 @@ router.post('/add/video', (req, res)=> {
     });
 });
 
+router.post('/video/add-view', (req, res)=> {
+    Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].viewedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
+router.post('/video/add-like', (req, res)=> {
+    Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].likedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
+router.post('/video/remove-like', (req, res)=> {
+    Course.findByIdAndUpdate(req.query.course, {$pop: {"videos.$[v].likedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
 // Comment routes
 router.post('/add/comment', (req, res)=> {
     Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].comments": req.body}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
