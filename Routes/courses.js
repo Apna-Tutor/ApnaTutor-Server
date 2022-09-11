@@ -93,7 +93,7 @@ router.post('/video/add-like', (req, res)=> {
 });
 
 router.post('/video/remove-like', (req, res)=> {
-    Course.findByIdAndUpdate(req.query.course, {$pop: {"videos.$[v].likedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
+    Course.findByIdAndUpdate(req.query.course, {$pull: {"videos.$[v].likedBy": req.body.user}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
