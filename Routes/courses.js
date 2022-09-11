@@ -120,7 +120,15 @@ router.post('/add/quiz', (req, res)=> {
 
 // Notes routes
 router.post('/add/notes', (req, res)=> {
-    Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].notes": {$each: [req.body]}}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
+    Course.findByIdAndUpdate(req.query.course, {$push: {"videos.$[v].notes": req.body}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
+router.post('/remove/notes', (req, res)=> {
+    Course.findByIdAndUpdate(req.query.course, {$pull: {"videos.$[v].notes": {_id: req.query.note}}}, {arrayFilters:[{"v._id": req.query.video}], new: true}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
