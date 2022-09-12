@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/users', require('./Routes/users'));
 app.use('/courses', require('./Routes/courses'));
+app.use('/videos', require('./Routes/videos'));
+app.use('/comments', require('./Routes/comments'));
 app.use('/upload', require('./Routes/uploader'));
 
 app.listen(process.env.PORT, () => {
