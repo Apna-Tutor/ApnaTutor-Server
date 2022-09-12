@@ -21,6 +21,9 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/in', (req, res) => {
+    console.log(req);
+    console.log(req.body);
+    console.log(req.body.videos);
     Video.find({ _id: { $in: req.body.videos } }).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
