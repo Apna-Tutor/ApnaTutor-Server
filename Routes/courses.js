@@ -18,7 +18,7 @@ router.get('/all', (req, res)=> {
     });
 });
 
-router.get('/in', (req, res)=> {
+router.post('/in', (req, res)=> {
     Course.find({_id: {$in: req.body.courses}}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
