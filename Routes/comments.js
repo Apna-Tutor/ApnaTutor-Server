@@ -20,7 +20,7 @@ router.get('/all', (req, res)=> {
 });
 
 router.post('/in', (req, res)=> {
-    Comment.find({_id: {$in: [req.body.comments]}}).then((value) => {
+    Comment.find({_id: {$in: [...req.body.comments]}}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
