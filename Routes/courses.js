@@ -19,7 +19,7 @@ router.get('/all', (req, res)=> {
 });
 
 router.post('/in', (req, res)=> {
-    Course.find({_id: {$in: [req.body.courses]}}).then((value) => {
+    Course.find({_id: {$in: req.body.courses}}).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
