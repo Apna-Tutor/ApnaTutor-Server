@@ -77,7 +77,7 @@ router.post('/remove-like', (req, res) => {
 });
 
 router.post('/add-notes', (req, res) => {
-    Video.findByIdAndUpdate(req.query.video, { $push: { notes: req.body } }, { new: true }).then((value) => {
+    Video.findByIdAndUpdate(req.query.video, { $push: { notes: {$each: [req.body], $sort:{timeStamp: 1}} } }, { new: true }).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
