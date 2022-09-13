@@ -12,8 +12,12 @@ router.get('/', (req, res)=> {
 });
 
 router.get('/all', (req, res)=> {
-    Comment.find().then((value) => {
-        res.status(200).json(value);
+    Video.findById(req.query.video).then((video) => {
+        Comment.find({_id: {$in: video.comments}}).then((value) => {
+            res.status(200).json(value);
+        }).catch((error) => {
+            res.status(400).send(error.message);
+        });
     }).catch((error) => {
         res.status(400).send(error.message);
     });
