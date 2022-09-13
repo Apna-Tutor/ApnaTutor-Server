@@ -13,22 +13,22 @@ router.get('/', (req, res) => {
 });
 
 router.get('/all', (req, res) => {
-    Video.find().then((value) => {
-        res.status(200).json(value);
+    Course.findById(req.query.course).then((course) => {
+        Video.find({ _id: { $in: course.videos }}).then((value) => {
+            res.status(200).json(value);
+        }).catch((error) => {
+            res.status(400).send(error.message);
+        });
     }).catch((error) => {
         res.status(400).send(error.message);
     });
 });
 
 router.post('/in', (req, res) => {
-    console.log(req);
-    console.log(req.body);
-    console.log('vdos',req.body.videos);
     Video.find({ _id: { $in: req.body.videos } }).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
-        console.log(error);
     });
 });
 
