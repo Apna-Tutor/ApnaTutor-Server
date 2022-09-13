@@ -44,6 +44,14 @@ router.post('/add', (req, res) => {
     });
 });
 
+router.post('/add-rank', (req, res) => {
+    Video.findByIdAndUpdate(req.query.video, { $push: { leaderBoard: {$each: [req.body], $sort: {percentage: -1}} } }, { new: true }).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
 router.post('/add-view', (req, res) => {
     Video.findByIdAndUpdate(req.query.video, { $push: { viewedBy: req.body.user } }, { new: true }).then((value) => {
         res.status(200).json(value);

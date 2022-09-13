@@ -14,6 +14,11 @@ const Note = mongoose.Schema({
     timeStamp: {type: Number, required: true},
 });
 
+const Rank = mongoose.Schema({
+    userId: {type: String, required: true},
+    percentage: {type: Number, required: true}
+}, {_id: false});
+
 module.exports = mongoose.model('Video', mongoose.Schema({
     title: {type: String, required: true},
     description: {type: String, required: false},
@@ -25,5 +30,5 @@ module.exports = mongoose.model('Video', mongoose.Schema({
     comments: {type: Array, of: String, required: false},
     notes: {type: Array, of: Note, required: false},
     quiz: {type: Array, of: Quiz, required: false},
-    leaderBoard: {type: Map, of: Number, required: false},
+    leaderBoard: {type: Array, of: Rank, required: false},
 }));
