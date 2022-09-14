@@ -38,7 +38,10 @@ router.put('/video', multer({storage: multer.memoryStorage(), limits: {fileSize:
         folder: "ApnaTutor/videos",
         public_id: Date.now().toString()
     },(error, result) => {
-        if (error) res.status(400).send(error.message);
+        if (error) {
+            res.status(400).send(error.message);
+            console.log(error);
+        }
         else res.status(200).send(result.secure_url);
     }).end(req.file.buffer);
 });
