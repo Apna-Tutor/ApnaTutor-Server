@@ -33,8 +33,6 @@ router.put('/thumbnail', multer({storage: multer.memoryStorage(), limits: {fileS
 });
 
 router.put('/video', multer({storage: multer.memoryStorage(), limits: {fileSize: 10737418240}}).single('video'), (req, res)=> {
-    console.log(req.file);
-    console.log(req.file.buffer);
     Cloudinary.uploader.upload_stream({
         resource_type: "auto",
         folder: "ApnaTutor/videos",
