@@ -3,6 +3,7 @@ const course = require('../Models/course');
 const router = express.Router();
 const Course = require('../Models/course');
 const Video = require('../Models/video');
+const Comment = require('../Models/comment');
 
 router.get('/', (req, res) => {
     Video.findById(req.query.video).then((value) => {
@@ -106,6 +107,11 @@ router.delete('/delete', (req, res) => {
             res.status(200).json(video);
         }).catch((error) => {
             res.status(400).send(error.message);
+        });
+        Comment.deleteMany({ _id: { $in: video.comments } }).then((comments) => {
+            console.log("deleted comments: ", comments);
+        }).catch((error) => {
+            console.log("deleted comments: ", error);
         });
     }).catch((error) => {
         res.status(400).send(error.message);
