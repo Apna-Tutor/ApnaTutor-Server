@@ -52,6 +52,22 @@ router.post('/add', (req, res) => {
     });
 });
 
+router.post('/add-follower', (req, res) => {
+    Course.findByIdAndUpdate(req.query.course, { $push: { followedBy: req.body.user } }, { new: true }).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
+router.post('/remove-follower', (req, res) => {
+    Course.findByIdAndUpdate(req.query.course, { $pull: { followedBy: { _id: req.body.user } } }, { new: true }).then((value) => {
+        res.status(200).json(value);
+    }).catch((error) => {
+        res.status(400).send(error.message);
+    });
+});
+
 router.patch('/update', (req, res) => {
     Course.findByIdAndUpdate(req.query.course, req.body, { new: true }).then((value) => {
         res.status(200).json(value);
