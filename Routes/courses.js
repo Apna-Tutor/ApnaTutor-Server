@@ -61,7 +61,7 @@ router.post('/add-follower', (req, res) => {
 });
 
 router.post('/remove-follower', (req, res) => {
-    Course.findByIdAndUpdate(req.query.course, { $pull: { followedBy: { _id: req.body.user } } }, { new: true }).then((value) => {
+    Course.findByIdAndUpdate(req.query.course, { $pull: { followedBy: req.body.user } }, { new: true }).then((value) => {
         res.status(200).json(value);
     }).catch((error) => {
         res.status(400).send(error.message);
